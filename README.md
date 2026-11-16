@@ -11,6 +11,26 @@ Runtime: `bun`
 
 ## Usage
 
+### Linux deployment (no Docker)
+
+Upload this version's deployment package (including the prebuilt `deploy/web`) and run:
+
+```bash
+sudo bash deploy.sh        # http://SERVER-IP:8080
+# Or choose an unused port:
+sudo bash deploy.sh 9000
+```
+
+Requires systemd, Ubuntu 22.04+/Debian 12+ or a dnf-based distribution
+(Rocky/AlmaLinux 9+, Fedora), and x86_64/ARM64. The script installs missing
+system dependencies and publishes prebuilt assets to `/var/www/remake` with
+`/etc/nginx/conf.d/remake.conf`. No Node.js, Bun, npm or GitHub downloads are
+needed on the server. Existing dependencies skip package installation. Only Nginx is
+needed afterwards; it starts at boot. No automatic updates are configured.
+Allow the chosen TCP port in your firewall/cloud security group. Existing
+deployment paths are never overwritten. Game saves remain in browser storage.
+See [the Chinese deployment guide](./README-zh_CN.md) for details and recovery.
+
 ### Dev
 
 ```bash
